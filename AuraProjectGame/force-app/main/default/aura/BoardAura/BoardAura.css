@@ -1,0 +1,10 @@
+/* this is direct child to the aura component */
+.THIS.board {
+    background: #f7fafc;
+    position: relative;
+}
+/* this span tag we defined in boardaura.cmp is not the direct child to the aura component thats why we will mention with space as below */
+.THIS .winWord{
+    text-transform: uppercase;
+    font-weight: bold;
+}

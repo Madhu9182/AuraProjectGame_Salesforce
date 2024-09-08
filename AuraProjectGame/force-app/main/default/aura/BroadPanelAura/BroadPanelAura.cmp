@@ -1,0 +1,49 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+        <aura:attribute name="modes" type="List"
+        default="[
+        {'label': 'Easy', 'value': 'easy'},
+        {'label': 'Medium', 'value': 'medium'},
+        {'label': 'Hard', 'value': 'hard'},
+        ]" />
+    
+        <aura:attribute name="selectedMode" type="String" />
+
+    <lightning:card title="Word Shuffle Game" >
+        <lightning:layout horizontalAlign="center" multipleRows="true">
+            <lightning:layoutItem padding="around-small">
+                <lightning:combobox name="gameMode" 
+                    label="Game Mode" 
+                    value="inProgress" 
+                    options="{!v.modes}" 
+                    aura:id="gameMode"
+                    variant="label-hidden"
+                    placeholder="Select Game Mode" />
+            </lightning:layoutItem>
+
+            <lightning:layoutItem padding="around-small">
+                <lightning:button variant="brand" label="Start New Game" title="Start New Game" onclick="{!c.startGame}"></lightning:button>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem padding="around-small">
+                <lightning:button label="Reshuffle" title="Reshuffle" onclick="{!c.reshuffleBoard}"/>
+            </lightning:layoutItem>
+            
+            
+                <aura:if isTrue="{! (v.selectedMode != null)}">
+                    <lightning:layoutItem size="12">
+                        <c:BoardAura mode="{!v.selectedMode}"></c:BoardAura>
+                    </lightning:layoutItem>
+                </aura:if>
+           
+        </lightning:layout>
+        <!-- bound expression creates a two way data binding -->
+        <!-- <p> Selected Mode is : {!v.selectedMode} </p> -->
+        <!-- unbound expression creates only one way data binding so the changes that made in your javascript file that do not travel back to the html markup file -->
+        <!-- <p> Selected Mode is : {#v.selectedMode} </p> -->
+    </lightning:card>
+
+    <!-- defining component within the component(child component) -->
+    <!-- passing data from parent to child component using public attribute -->
+    
+    
+</aura:component>	

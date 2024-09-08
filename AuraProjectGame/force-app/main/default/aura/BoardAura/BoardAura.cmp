@@ -1,0 +1,34 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+
+    <!-- attribute to store the type of game mode -->
+    <aura:attribute name="mode" type="String" default="hard" />
+
+    <aura:attribute name="words" type="List" />
+    <aura:attribute name="winWord" type="String"/>
+    <aura:attribute name="clickCount" type="Integer" default="0" />
+    <!-- attribute to store the value of blockSize -->
+    <aura:attribute name="blockSize" type="Integer" />
+    
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.doRender}" /> -->
+
+    <!-- Div is a container HTML element, generally used to group subElements -->
+        <div class="board">
+            <lightning:layout>
+                <lightning:layoutItem padding="around-small">
+                    <div class="slds-text-heading_medium">WORD : <span class="winWord">{!v.winWord}</span></div>
+                </lightning:layoutItem>
+                <lightning:layoutItem padding="around-small">
+                    <div class="slds-text-heading_medium">Moves Left : {!(3 - v.clickCount)}</div>
+                </lightning:layoutItem>
+            </lightning:layout>
+
+            <lightning:layout multipleRows="true">
+                <aura:iteration items="{!v.words}" var="word" >
+                    <lightning:layoutItem size="{!v.blockSize}" padding="around-small"> {!word} </lightning:layoutItem>
+                </aura:iteration>
+            </lightning:layout>
+        </div>
+</aura:component>	
+
